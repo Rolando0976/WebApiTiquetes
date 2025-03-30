@@ -21,21 +21,21 @@ namespace WebApiTiquetes.Controllers
         {
             return await _contexto.usuarios.ToListAsync();
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Usuarios>> GetUsuario(int id)
-        {
-            var usuario = await _contexto.usuarios.FindAsync(id);
-            if (usuario == null ) return NotFound();
-            return usuario;
-        }
-        [HttpPost]
-        public async Task<ActionResult<Usuarios>> CrearUsuario( Usuarios usuario)
-        {
-            usuario.us_fecha_adicion = DateTime.UtcNow;
-            _contexto.usuarios.Add(usuario);
-            await _contexto.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetUsuario), new { id = usuario.us_identificador}, usuario);
-        }
+            [HttpGet("{id}")]
+            public async Task<ActionResult<Usuarios>> GetUsuario(int id)
+            {
+                var usuario = await _contexto.usuarios.FindAsync(id);
+                if (usuario == null ) return NotFound();
+                return usuario;
+            }
+            [HttpPost]
+            public async Task<ActionResult<Usuarios>> CrearUsuario( Usuarios usuario)
+            {
+                usuario.us_fecha_adicion = DateTime.UtcNow;
+                _contexto.usuarios.Add(usuario);
+                await _contexto.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetUsuario), new { id = usuario.us_identificador}, usuario);
+            }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> ActualizarUsuario(int id, Usuarios usuario)
@@ -58,7 +58,7 @@ namespace WebApiTiquetes.Controllers
             await _contexto.SaveChangesAsync();
             return NoContent();
         }
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> EliminarUsuario(int id)
         {
             var usuario = await _contexto.usuarios.FindAsync(id);
