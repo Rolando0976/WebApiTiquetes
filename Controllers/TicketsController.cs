@@ -71,6 +71,7 @@ namespace WebApiTiquetes.Controllers
             if (tickete == null) return NotFound();
 
             _contexto.tiquetes.Remove(tickete);
+            await _contexto.SaveChangesAsync();
             return NoContent();
         }
     }

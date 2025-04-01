@@ -65,6 +65,7 @@ namespace WebApiTiquetes.Controllers
             if (usuario == null) return NotFound();
 
             _contexto.usuarios.Remove(usuario);
+            await _contexto.SaveChangesAsync();
             return NoContent();
         }
 

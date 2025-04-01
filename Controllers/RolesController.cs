@@ -68,10 +68,6 @@ namespace WebApiTiquetes.Controllers
             return NoContent();
 
 
-
-
-
-
         }
     }
 }
